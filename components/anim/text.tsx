@@ -18,7 +18,7 @@ export function Animate({
   ...props
 }: AnimateProps) {
   const BaseComp = asChild ? Slot : 'div';
-  const Comp = hasMotion ? motion(BaseComp) : BaseComp;
+  const Comp = hasMotion ? motion.create(BaseComp) : BaseComp;
   return (
     <Comp
       initial='hidden'

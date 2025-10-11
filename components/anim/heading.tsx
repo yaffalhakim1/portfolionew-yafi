@@ -18,7 +18,7 @@ export function Heading({
   ...props
 }: HeadingProps) {
   const BaseComp = asChild ? Slot : 'h1';
-  const Comp = hasMotion ? motion(BaseComp) : BaseComp;
+  const Comp = hasMotion ? motion.create(BaseComp) : BaseComp;
   return (
     <Comp
       initial='hidden'

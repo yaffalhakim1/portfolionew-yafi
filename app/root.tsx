@@ -51,16 +51,49 @@ export const links: Route.LinksFunction = () => [
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang='en'>
+    <html lang='en' suppressHydrationWarning>
       <head>
         <meta charSet='utf-8' />
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <Meta />
         <Links />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+            (function() {
+              try {
+                // Only run on client - will be skipped during server rendering
+                if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+                  // On page load or when changing themes, best to add inline in \`head\` to avoid FOUC
+                  if (localStorage.getItem('theme') === 'dark' || 
+                      (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.documentElement.classList.add('dark');
+                    document.documentElement.style.colorScheme = 'dark';
+                  } else {
+                    document.documentElement.classList.remove('dark');
+                    document.documentElement.style.colorScheme = 'light';
+                  }
+                }
+              } catch (e) {
+                // Fail silently if localStorage is not available
+                console.warn('Unable to set initial theme', e);
+              }
+            })()
+          `,
+          }}
+        />
       </head>
 
-      <body className='bg-[#f9f9f6] dark:bg-[#16181d] font-sans antialiased'>
-        <ThemeProvider attribute='class' defaultTheme='dark'>
+      <body
+        className='bg-[#f9f9f6] dark:bg-[#16181d] font-sans antialiased'
+        suppressHydrationWarning
+      >
+        <ThemeProvider
+          attribute='class'
+          defaultTheme='system'
+          enableSystem={true}
+          disableTransitionOnChange
+        >
           {children}
         </ThemeProvider>
         <ScrollRestoration />
@@ -74,7 +107,7 @@ export default function App() {
   return (
     <>
       <Header />
-      <main className='container mx-auto flex flex-1 flex-col pb-20 pt-40 md:pt-32 md:px-80 sm:px-6'>
+      <main className='container mx-auto flex flex-1 flex-col pb-20 pt-40 px-4 sm:px-6 md:px-80'>
         <Outlet />
       </main>
     </>

@@ -1,5 +1,5 @@
 import { Moon, Sun } from 'lucide-react';
-import { useTheme } from 'next-themes';
+import { useThemeValue } from '@/components/theme-provider';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -10,7 +10,16 @@ import {
 } from '@/components/ui/dropdown-menu';
 
 export function ThemeToggle() {
-  const { setTheme } = useTheme();
+  const { theme, setTheme, mounted } = useThemeValue();
+
+  // Don't render anything until mounted on client to avoid hydration mismatch
+  if (!mounted) {
+    return (
+      <Button variant='ghost' size='icon'>
+        <span className='sr-only'>Loading theme</span>
+      </Button>
+    );
+  }
 
   return (
     <DropdownMenu>
