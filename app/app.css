@@ -1,5 +1,27 @@
 @import 'tailwindcss';
 
+@theme {
+  --container-screen-xl: 75rem;
+  --container-screen-2xl: 83.75rem;
+
+  --spacing-8xl: 75rem;
+  --spacing-25: 35.625rem;
+  --spacing-29: 28rem;
+  --spacing-45: 45rem;
+  --spacing-50: 50rem;
+  --spacing-51: 54.375rem;
+  --spacing-85: 21rem;
+  --spacing-94: 22.5rem;
+  --spacing-120: 120rem;
+  --spacing-6_25: 6.25rem;
+  --spacing-70\%: 70%;
+  --spacing-40\%: 40%;
+  --spacing-30\%: 30%;
+  --spacing-80\%: 80%;
+  --spacing-8_5: 8.5rem;
+  --spacing-3_75: 3.75rem;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -59,9 +81,15 @@
 
 @layer base {
   * {
-    @apply border-border;
+    @reference border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @reference bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .container {
+    @reference w-full px-5 py-0 mx-auto max-w-8xl sm:px-7;
   }
 }

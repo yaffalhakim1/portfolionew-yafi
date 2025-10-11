@@ -1,16 +1,16 @@
-import type { Route } from './+types/home';
-import { Welcome } from '../welcome/welcome';
 import { Animate } from '@/components/anim/text';
 import FeaturedCards from '@/components/featured-cards';
 import { GitHubCalendarWrapper } from '@/components/github-calendar';
 import TypingAnimation from '@/components/rotate-text';
 import { Heading } from '@/components/anim/heading';
+import type { Route } from './+types/_index';
+import { generateMeta } from '../metaConfig';
 
 export function meta({}: Route.MetaArgs) {
-  return [
-    { title: 'New React Router App' },
-    { name: 'description', content: 'Welcome to React Router!' },
-  ];
+  return generateMeta(
+    'Home',
+    'Fullstack Engineer specializing in performance-optimized web applications, front-end and back-end development.'
+  );
 }
 
 export default function Home() {
@@ -29,17 +29,17 @@ export default function Home() {
 
           <p className='leading-relaxed text-sm'>
             {' '}
-            I&apos;m a passionate Fullstack Engineer from Indonesia, dedicated
-            to crafting beautiful web applications and websites.
+            Fullstack Engineer from Indonesia, dedicated to crafting beautiful
+            to <b>performance-optimized</b> web applications and websites.
           </p>
           <br />
           <p className='leading-relaxed text-sm'>
-            I am now evolving from <b>Frontend Engineer</b> into{' '}
-            <b>Full-Stack Developer</b>—melding my React/Next.js mastery with
-            backend essentials like Node.js, REST APIs, and Infrastructure as
-            Code. Learning end to end creating products helps me bridge UI
-            finesse with server-side logic and make complete, reliable
-            applications.
+            {' '}
+            With a strong foundation in both front-end and back-end development,
+            I specialize in creating seamless user experiences and robust server
+            solutions. My passion lies in transforming ideas into reality
+            through code, ensuring every project I undertake is not only
+            functional but also visually appealing.
           </p>
         </Animate>
       </div>

@@ -5,6 +5,7 @@ export type NavItem = {
   name: string;
   link: string;
   icon?: JSX.Element;
+  external?: boolean;
 };
 
 const navItems: NavItem[] = [
@@ -12,7 +13,7 @@ const navItems: NavItem[] = [
   { name: 'About', link: '/about' },
   { name: 'Work', link: '/experience' },
   { name: 'Projects', link: '/projects' },
-  { name: 'Blog', link: '/blog' },
+  { name: 'Blog', link: 'https://yafialhakimblog.vercel.app/', external: true },
 ];
 
 export function Header() {

@@ -36,23 +36,23 @@ export function MobileNavigation({ navItems }: MobileNavigationProps) {
                 'relative flex items-center space-x-1 px-4 py-2 text-neutral-600 hover:text-neutral-500 dark:text-neutral-50 dark:hover:text-neutral-300'
               )}
             >
-              <Link to={item.link}>
-                <span className=''>{item.icon}</span>
-                <span className='text-xl'>
-                  <span className='mr-px text-neutral-400'>/</span>
-                  {item.name.toLowerCase()}
-                </span>
-                {/* {isActive && (
-                        <motion.span
-                           transition={{
-                              ease: "backInOut",
-                              duration: 0.35,
-                           }}
-                           layoutId="active-nav"
-                           className="absolute -inset-x-4 inset-y-auto z-[-1] hidden h-9 rounded-full bg-neutral-200 dark:bg-neutral-800 sm:flex"
-                        />
-                     )} */}
-              </Link>
+              {item.external ? (
+                <a href={item.link} target='_blank' rel='noopener noreferrer'>
+                  <span className=''>{item.icon}</span>
+                  <span className='text-xl'>
+                    <span className='mr-px text-neutral-400'>/</span>
+                    {item.name.toLowerCase()}
+                  </span>
+                </a>
+              ) : (
+                <Link to={item.link}>
+                  <span className=''>{item.icon}</span>
+                  <span className='text-xl'>
+                    <span className='mr-px text-neutral-400'>/</span>
+                    {item.name.toLowerCase()}
+                  </span>
+                </Link>
+              )}
             </DropdownMenuItem>
           ))}
         </nav>

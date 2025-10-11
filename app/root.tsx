@@ -10,9 +10,30 @@ import {
 import type { Route } from './+types/root';
 import './app.css';
 import { Header } from '@/components/header';
-import clsx from 'clsx';
+import { metainfo } from './metaConfig';
 
 import { ThemeProvider } from '@/components/theme-provider';
+
+export const meta: Route.MetaFunction = () => {
+  return [
+    { title: metainfo.name },
+    { name: 'description', content: metainfo.description },
+    { name: 'viewport', content: 'width=device-width,initial-scale=1' },
+    { name: 'author', content: metainfo.name },
+    // Open Graph
+    { property: 'og:type', content: 'website' },
+    { property: 'og:url', content: metainfo.url },
+    { property: 'og:title', content: metainfo.name },
+    { property: 'og:description', content: metainfo.description },
+    { property: 'og:image', content: metainfo.image },
+    // Twitter
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:creator', content: metainfo.twitter },
+    { name: 'twitter:title', content: metainfo.name },
+    { name: 'twitter:description', content: metainfo.description },
+    { name: 'twitter:image', content: metainfo.image },
+  ];
+};
 
 export const links: Route.LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -25,6 +46,7 @@ export const links: Route.LinksFunction = () => [
     rel: 'stylesheet',
     href: 'https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap',
   },
+  { rel: 'icon', href: '/favicon.ico' },
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -36,22 +58,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <Header />
 
-      <body className='bg-[#f9f9f6] dark:bg-[#16181d]'>
-        <ThemeProvider
-          attribute='class'
-          defaultTheme='system'
-          enableSystem
-          disableTransitionOnChange
-        >
-          <div
-            className={clsx('container flex min-h-screen max-w-4xl flex-col ')}
-          >
-            <main className='flex flex-1 flex-col pb-20 pt-40 md:pt-32'>
-              {children}
-            </main>
-          </div>
+      <body className='bg-[#f9f9f6] dark:bg-[#16181d] font-sans antialiased'>
+        <ThemeProvider attribute='class' defaultTheme='dark'>
+          {children}
         </ThemeProvider>
         <ScrollRestoration />
         <Scripts />
@@ -61,7 +71,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  return <Outlet />;
+  return (
+    <>
+      <Header />
+      <main className='container mx-auto flex flex-1 flex-col pb-20 pt-40 md:pt-32 md:px-80 sm:px-6'>
+        <Outlet />
+      </main>
+    </>
+  );
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {

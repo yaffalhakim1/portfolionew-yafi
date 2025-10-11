@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { type NavItem } from '@/components/header';
 import { MobileNavigation } from '@/components/mobile-navigation';
-import { ThemeToggle } from '@/components/theme-toggle';
 import { cn } from 'lib/utils';
 import { motion } from 'framer-motion';
 import { Link, useLocation } from 'react-router';
@@ -38,7 +37,21 @@ export const FloatingNav = ({
       <div className='hidden md:flex'>
         {navItems.map((navItem, idx: number) => {
           const isActive = pathname.pathname === navItem.link;
-          return (
+          return navItem.external ? (
+            <a
+              key={`link=${idx}`}
+              href={navItem.link}
+              target='_blank'
+              rel='noopener noreferrer'
+              className={cn(
+                'relative flex h-8 items-center px-4 text-neutral-600 hover:text-[#00DC82] dark:text-neutral-50 dark:hover:text-[#00DC82]'
+              )}
+            >
+              <span className={cn('hidden text-sm sm:block capitalize')}>
+                {navItem.name.toLowerCase()}
+              </span>
+            </a>
+          ) : (
             <Link
               key={`link=${idx}`}
               to={navItem.link}
@@ -84,8 +97,6 @@ export const FloatingNav = ({
       <div className='md:hidden'>
         <MobileNavigation navItems={navItems} />
       </div>
-
-      <ThemeToggle />
     </motion.div>
   );
 };

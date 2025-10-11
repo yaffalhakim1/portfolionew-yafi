@@ -3,7 +3,6 @@ import type { Config } from 'tailwindcss';
 const config = {
   darkMode: ['class', '.dark'],
   content: [
-    './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
@@ -12,10 +11,10 @@ const config = {
   theme: {
     container: {
       center: true,
-      padding: '2rem',
-      screens: {
-        '2xl': '1400px',
-      },
+      // padding: '2rem',
+      // screens: {
+      //   '2xl': '1400px',
+      // },
     },
     extend: {
       colors: {
@@ -51,6 +50,10 @@ const config = {
         card: {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
+        },
+        fontFamily: {
+          sans: ['Inter', 'system-ui', 'sans-serif'],
+          inter: ['Inter', 'system-ui', 'sans-serif'],
         },
       },
       borderRadius: {
