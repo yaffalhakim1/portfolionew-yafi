@@ -5,7 +5,7 @@ on:
     inputs:
       confirm_deployment:
         description: 'Type "deploy" to confirm deployment'
-        required: true
+        required: false
         default: ''
 
 jobs:
