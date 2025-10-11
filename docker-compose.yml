@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  portfolio-yafi:
+    image: yaffalhakim1/portfolio-yafi:latest
+    container_name: portfolio-container
+    restart: unless-stopped
+    ports:
+      - '3000:3000'
+    environment:
+      - NODE_ENV=production
+    mem_limit: 512m
+    cpus: 1.0
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:3000']
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  caddy:
+    image: caddy:2-alpine
+    container_name: caddy-reverse-proxy
+    restart: unless-stopped
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - portfolio-yafi
+
+volumes:
+  caddy_data:
+  caddy_config:
