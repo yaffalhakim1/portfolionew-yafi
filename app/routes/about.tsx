@@ -33,31 +33,23 @@ function AboutPage() {
           I&apos;m Yafi, a <span className='font-bold'>Fullstack Engineer</span>
         </p>
         <p className='text-justify md:w-9/12 text-sm leading-relaxed'>
-          Hi, I&apos;m Yaf—a passionate Frontend Engineer based in Jakarta,
+          Hi, I&apos;m Yaf—a Professional Frontend Engineer based in Jakarta,
           Indonesia, currently leveling up my skills in backend engineering and
           Infrastructure DevOps. With 2 year of experience crafting interactive
-          and accessible web applications using React and Next.js, I&apos;m now
-          exploring the world behind the scenes—building simple REST APIs with
-          Node.js, deploying apps on VPS, and diving into data structures and
-          algorithms to write smarter, more efficient code.
+          and accessible web applications using React and Next.js, and now
+          exploring the world behind the scenes—building REST APIs with Node.js,
+          deploying apps on VPS, and diving into data structures and algorithms
+          to write smarter, more efficient code.
           <br />
           <br />
-          My development approach is driven by curiosity and iteration: I&apos;m
-          constantly learning by building projects, solving programming
-          challenges, and reflecting on whats working—and what&apos;s not. I
-          believe that writing clean, maintainable code starts with
-          understanding how data flows and how my app behaves under the hood.
-          I&apos;m excited to bridge the gap between frontend and backend—and
-          build full-stack experiences that are not only functional but also
-          fast, scalable, and user-friendly. When I&apos;m not debugging code or
-          sketching API routes, you&apos;ll find me sharing the journey—whether
-          it&apos;s a tutorial, a deployment log, or an “aha” moment—in my
-          learning log (blog).
+          Excited to bridge the gap between frontend and backend—and build
+          full-stack experiences that are not only functional but also fast,
+          scalable, and user-friendly. When not debugging code or sketching API
+          routes, you&apos;ll find me sharing the journey—whether it&apos;s a
+          tutorial, a deployment log, or an “aha” moment—in my learning log
+          (blog).
           <br />
           <br />
-          Curious to connect? Let`s chat about building reliable systems,
-          deploying on a budget, or cracking your favorite algorithm. Reach out
-          via email or LinkedIn!
         </p>
       </Animate>
 

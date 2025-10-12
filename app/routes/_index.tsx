@@ -36,7 +36,7 @@ export default function Home() {
           <p className='leading-relaxed text-sm'>
             {' '}
             With a strong foundation in both front-end and back-end development,
-            I specialize in creating seamless user experiences and robust server
+            specializing in creating seamless user experiences and robust server
             solutions. My passion lies in transforming ideas into reality
             through code, ensuring every project I undertake is not only
             functional but also visually appealing.
