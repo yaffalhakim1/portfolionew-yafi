@@ -19,4 +19,4 @@ RUN npm prune --production
 
 EXPOSE 3000
 
-CMD [ "node", "./build/index.js" ]
+CMD [ "node", "./build/server/index.js" ]
