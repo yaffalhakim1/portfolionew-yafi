@@ -12,7 +12,7 @@ RUN npm ci
 COPY . .
 
 # Build the application
-RUN npm run build
+RUN npm run build -- --config vite.config.docker.ts
 
 # Remove dev dependencies
 RUN npm prune --production
