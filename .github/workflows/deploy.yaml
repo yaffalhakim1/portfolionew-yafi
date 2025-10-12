@@ -11,7 +11,6 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    if: ${{ github.event.inputs.confirm_deployment == 'deploy' }} # Only run if confirmed
 
     steps:
       - name: Checkout code
@@ -43,6 +42,6 @@ jobs:
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
             cd /opt/portfolio
-            docker-compose pull
-            docker-compose up -d
+            docker compose pull
+            docker compose up -d
             docker system prune -f
