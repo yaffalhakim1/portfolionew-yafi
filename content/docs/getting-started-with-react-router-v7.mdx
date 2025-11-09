@@ -1,0 +1,148 @@
+---
+title: Getting Started with React Router v7
+author: Yafi Al Hakim
+date: 2024-12-15
+description: Learn how to build modern web applications with React Router v7, the latest version with powerful new features.
+tags: ['React', 'React Router', 'Web Development', 'Tutorial']
+featured: true
+readingTime: 5 min read
+---
+
+import { Callout } from 'fumadocs-ui/components/callout';
+import { Card, Cards } from 'fumadocs-ui/components/card';
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+import { File, Folder, Files } from 'fumadocs-ui/components/files';
+
+# Getting Started with React Router v7
+
+React Router v7 brings exciting new features and improvements that make building modern web applications easier than ever. In this post, we'll explore the key changes and how to get started.
+
+<Callout type='success' title='Major Release'>
+  React Router v7 is a major release with breaking changes but offers
+  significant improvements in developer experience and performance.
+</Callout>
+
+## What's New in v7?
+
+React Router v7 introduces several major improvements:
+
+### 1. File-Based Routing
+
+One of the biggest changes is the introduction of file-based routing, similar to Next.js:
+
+```tsx
+// app/routes/about.tsx
+export default function About() {
+  return <div>About Page</div>;
+}
+```
+
+### 2. Built-in Data Loading
+
+The new data loading pattern simplifies server-side data fetching:
+
+```tsx
+export async function loader({ params }: Route.LoaderArgs) {
+  const data = await fetchData(params.id);
+  return { data };
+}
+
+export default function Component({ loaderData }: Route.ComponentProps) {
+  return <div>{loaderData.data}</div>;
+}
+```
+
+### 3. Improved Type Safety
+
+Better TypeScript integration with automatic type generation:
+
+```tsx
+import type { Route } from './+types/about';
+
+export function meta({}: Route.MetaArgs) {
+  return [{ title: 'About Page' }];
+}
+```
+
+## Migration Tips
+
+<Callout type='warning' title='Breaking Changes'>
+  Migration from v6 to v7 requires careful planning due to breaking changes.
+  Always test thoroughly in a development environment first.
+</Callout>
+
+<Steps>
+<Step>
+
+### 1. Route Configuration
+
+Switch from manual route config to file-based routing
+
+</Step>
+<Step>
+
+### 2. Data Loading
+
+Use the new loader pattern instead of useEffect
+
+</Step>
+<Step>
+
+### 3. Type Safety
+
+Leverage the new type generation system
+
+</Step>
+</Steps>
+
+## Getting Started
+
+<Cards>
+  <Card title='New Project' href='https://reactrouter.com/start/tutorial'>
+    Create a new React Router v7 project from scratch with the official CLI
+    tool.
+  </Card>
+  <Card title='Existing Project'>
+    Add React Router v7 to your existing React application with npm or yarn.
+  </Card>
+  <Card title='Learn More'>
+    Explore the official documentation for comprehensive guides and examples.
+  </Card>
+</Cards>
+
+### Installation Options
+
+```bash
+# Create new project
+npm create react-router@latest
+
+# Add to existing project
+npm install react-router@latest
+```
+
+## Project Structure
+
+Here's a typical React Router v7 project structure:
+
+<Files>
+  <Folder name='my-app' defaultOpen>
+    <File name='package.json' />
+    <File name='vite.config.ts' />
+    <Folder name='app' defaultOpen>
+      <File name='root.tsx' />
+      <File name='routes.ts' />
+      <Folder name='routes' defaultOpen>
+        <File name='_index.tsx' />
+        <File name='about.tsx' />
+        <File name='blog._index.tsx' />
+        <File name='blog.$slug.tsx' />
+      </Folder>
+    </Folder>
+  </Folder>
+</Files>
+
+## Conclusion
+
+React Router v7 represents a significant step forward for React development. The new features make it easier to build scalable, type-safe applications with excellent developer experience.
+
+Have you tried React Router v7 yet? Share your thoughts in the comments!

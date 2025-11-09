@@ -13,7 +13,7 @@ const navItems: NavItem[] = [
   { name: 'About', link: '/about' },
   { name: 'Work', link: '/experience' },
   { name: 'Projects', link: '/projects' },
-  { name: 'Blog', link: 'https://yafialhakimblog.vercel.app/', external: true },
+  { name: 'Blog', link: '/blog' },
 ];
 
 export function Header() {
