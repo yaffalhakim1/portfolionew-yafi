@@ -1,0 +1,445 @@
+---
+title: Creating a Blog with Fumadocs and React Router 7
+author: Muhammad Yafi Alhakim
+date: 2024-12-16
+description: Learn how to build a modern blog using Fumadocs UI components and React Router 7 with file-based routing and MDX support.
+tags: ['Fumadocs', 'React Router', 'Blog', 'MDX', 'Tutorial']
+featured: true
+readingTime: 8 min read
+---
+
+import { Callout } from 'fumadocs-ui/components/callout';
+import { Card, Cards } from 'fumadocs-ui/components/card';
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+import { File, Folder, Files } from 'fumadocs-ui/components/files';
+
+In this comprehensive guide, we'll explore how to build a modern, feature-rich blog using Fumadocs UI components and React Router 7. This combination provides excellent developer experience with beautiful UI components out of the box.
+
+<Callout type='info' title='Prerequisites'>
+  Before starting, ensure you have: - Node.js 18+ installed - Basic knowledge of
+  React and TypeScript - Familiarity with MDX syntax
+</Callout>
+
+## Project Overview
+
+We'll build a blog with:
+
+- File-based routing with React Router 7
+- MDX support for rich content
+- Beautiful UI components from Fumadocs
+- Dark mode support
+- Responsive design
+- SEO optimization
+
+## Codebase Structure
+
+Let's first understand the project structure we'll be working with:
+
+<Files>
+  <Folder name='portfolio-blog' defaultOpen>
+    <File name='package.json' />
+    <File name='vite.config.ts' />
+    <File name='tailwind.config.ts' />
+    <File name='tsconfig.json' />
+    <Folder name='app' defaultOpen>
+      <File name='root.tsx' />
+      <File name='app.css' />
+      <File name='routes.ts' />
+      <Folder name='routes' defaultOpen>
+        <File name='_index.tsx' />
+        <File name='blog._index.tsx' />
+        <File name='blog.$slug.tsx' />
+        <File name='about.tsx' />
+      </Folder>
+    </Folder>
+    <Folder name='content' defaultOpen>
+      <Folder name='docs' defaultOpen>
+        <File name='first-post.mdx' />
+        <File name='second-post.mdx' />
+      </Folder>
+    </Folder>
+    <Folder name='lib' defaultOpen>
+      <File name='source.ts' />
+      <File name='utils.ts' />
+    </Folder>
+    <Folder name='components' defaultOpen>
+      <File name='mdx-components.tsx' />
+      <Folder name='ui' defaultOpen>
+        <File name='button.tsx' />
+        <File name='card.tsx' />
+      </Folder>
+    </Folder>
+  </Folder>
+</Files>
+
+## Step-by-Step Implementation
+
+<Steps>
+<Step>
+
+### 1. Project Setup
+
+First, let's set up a new React Router 7 project with the necessary dependencies:
+
+```bash
+# Create new React Router project
+npm create react-router@latest my-blog
+
+# Navigate to project directory
+cd my-blog
+
+# Install Fumadocs packages
+npm install fumadocs-ui fumadocs-core fumadocs-mdx
+
+# Install additional dependencies
+npm install @types/mdx lucide-react tailwindcss
+```
+
+</Step>
+<Step>
+
+### 2. Configure Tailwind CSS
+
+Set up Tailwind CSS with Fumadocs UI preset:
+
+```css
+/* app/app.css */
+@import 'tailwindcss';
+@import 'fumadocs-ui/css/preset.css';
+@import 'fumadocs-ui/css/neutral.css';
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --primary: 0 0% 9%;
+    --secondary: 0 0% 96.1%;
+    /* ... other CSS variables */
+  }
+
+  .dark {
+    --background: 222 9% 10%;
+    --foreground: 0 0% 98%;
+    /* ... dark mode variables */
+  }
+}
+```
+
+</Step>
+<Step>
+
+### 3. Set Up MDX Components
+
+Create a centralized MDX components configuration:
+
+```tsx
+// app/components/mdx-components.tsx
+import defaultMdxComponents from 'fumadocs-ui/mdx';
+import * as TabsComponents from 'fumadocs-ui/components/tabs';
+import * as StepsComponents from 'fumadocs-ui/components/steps';
+import * as FilesComponents from 'fumadocs-ui/components/files';
+import { Callout } from 'fumadocs-ui/components/callout';
+import { Card, Cards } from 'fumadocs-ui/components/card';
+import type { MDXComponents } from 'mdx/types';
+
+export function getMDXComponents(components?: MDXComponents): MDXComponents {
+  return {
+    ...defaultMdxComponents,
+    ...TabsComponents,
+    ...StepsComponents,
+    ...FilesComponents,
+    Callout,
+    Card,
+    Cards,
+    ...components,
+  };
+}
+
+export const useMDXComponents = getMDXComponents;
+```
+
+</Step>
+<Step>
+
+### 4. Configure Content Source
+
+Set up Fumadocs to handle your MDX content:
+
+```tsx
+// lib/source.ts
+import { createMDXSource } from 'fumadocs-mdx';
+import { loader } from 'fumadocs-core/source';
+import { create } from '@react-router/fs-routes';
+
+export const blogSource = loader({
+  baseUrl: '/blog',
+  source: createMDXSource(mapFiles('./content/docs')),
+});
+```
+
+</Step>
+<Step>
+
+### 5. Create Blog Routes
+
+Set up the blog routes with React Router 7:
+
+```tsx
+// app/routes/blog._index.tsx
+import { Link } from 'react-router';
+import { blogSource } from '@/lib/source';
+
+export default function BlogIndex() {
+  const posts = blogSource.getPages();
+
+  return (
+    <div className='container mx-auto px-4 py-8'>
+      <h1 className='text-4xl font-bold mb-8'>Blog Posts</h1>
+
+      <div className='grid gap-6'>
+        {posts.map((post) => (
+          <article key={post.url} className='border rounded-lg p-6'>
+            <Link to={post.url} className='block'>
+              <h2 className='text-2xl font-semibold mb-2 hover:text-primary'>
+                {post.data.title}
+              </h2>
+              <p className='text-muted-foreground mb-4'>
+                {post.data.description}
+              </p>
+              <div className='flex items-center gap-4 text-sm text-muted-foreground'>
+                <span>{post.data.author}</span>
+                <span>{new Date(post.data.date).toLocaleDateString()}</span>
+              </div>
+            </Link>
+          </article>
+        ))}
+      </div>
+    </div>
+  );
+}
+```
+
+```tsx
+// app/routes/blog.$slug.tsx
+import { Link } from 'react-router';
+import { toClientRenderer } from 'fumadocs-mdx/runtime/vite';
+import { getMDXComponents } from '@/components/mdx-components';
+import { blogSource } from '@/lib/source';
+
+const renderer = toClientRenderer(blog, ({ default: Mdx }) => (
+  <div className='prose prose-slate max-w-none dark:prose-invert'>
+    <Mdx components={getMDXComponents()} />
+  </div>
+));
+
+export async function loader({ params }: Route.LoaderArgs) {
+  const page = blogSource.getPage([params.slug]);
+
+  if (!page) {
+    throw new Response('Not Found', { status: 404 });
+  }
+
+  return {
+    post: {
+      title: page.data.title,
+      description: page.data.description,
+      author: page.data.author,
+      date: page.data.date,
+      content: renderer[page.path],
+    },
+  };
+}
+
+export default function BlogPost({ loaderData }: Route.ComponentProps) {
+  const { post } = loaderData;
+  const Content = post.content;
+
+  return (
+    <div className='min-h-screen bg-background'>
+      <div className='container mx-auto px-4 py-8'>
+        <Link to='/blog' className='mb-8 inline-block'>
+          ← Back to Blog
+        </Link>
+
+        <article>
+          <header className='mb-8'>
+            <h1 className='text-4xl font-bold mb-4'>{post.title}</h1>
+            <p className='text-xl text-muted-foreground mb-4'>
+              {post.description}
+            </p>
+            <div className='flex items-center gap-4 text-sm text-muted-foreground'>
+              <span>By {post.author}</span>
+              <span>{new Date(post.date).toLocaleDateString()}</span>
+            </div>
+          </header>
+
+          <div className='prose-headings:scroll-mt-20'>
+            <Content />
+          </div>
+        </article>
+      </div>
+    </div>
+  );
+}
+```
+
+</Step>
+<Step>
+
+### 6. Create Sample MDX Content
+
+Create your first blog post with Fumadocs components:
+
+```mdx
+---
+title: Welcome to My Blog
+author: Your Name
+date: 2024-12-16
+description: Learn how to use Fumadocs components in your MDX content.
+tags: ['Tutorial', 'Fumadocs', 'React']
+---
+
+import { Callout } from 'fumadocs-ui/components/callout';
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+
+# Welcome to My Blog
+
+<Callout type='info' title='First Post'>
+  This is our first blog post using Fumadocs UI components!
+</Callout>
+
+## Getting Started
+
+<Steps>
+<Step>
+
+### Step 1: Installation
+
+Install the required packages...
+
+</Step>
+<Step>
+
+### Step 2: Configuration
+
+Set up your configuration files...
+
+</Step>
+<Step>
+
+### Step 3: Create Content
+
+Start writing your amazing content!
+
+</Step>
+</Steps>
+```
+
+</Step>
+</Steps>
+
+## Advanced Features
+
+### Enhanced MDX Components
+
+<Callout type='success' title='Pro Tip'>
+  You can extend the MDX components to include custom components specific to
+  your blog's design system.
+</Callout>
+
+Here are some advanced components you can use:
+
+<Cards>
+  <Card title='Callouts' icon='💡'>
+    Use different types of callouts for alerts, warnings, and important
+    information.
+  </Card>
+  <Card title='Steps' icon='📋'>
+    Create step-by-step tutorials with the Steps component.
+  </Card>
+  <Card title='File Trees' icon='📁'>
+    Display file structures with the Files component.
+  </Card>
+  <Card title='Cards' icon='🎴'>
+    Create beautiful content cards for related posts or resources.
+  </Card>
+</Cards>
+
+### SEO Optimization
+
+Configure meta tags for better SEO:
+
+```tsx
+export function meta({ loaderData }: Route.MetaArgs) {
+  const { post } = loaderData;
+
+  return [
+    { title: `${post.title} - My Blog` },
+    { name: 'description', content: post.description },
+    { property: 'og:title', content: post.title },
+    { property: 'og:description', content: post.description },
+    { property: 'og:type', content: 'article' },
+    { property: 'article:author', content: post.author },
+    {
+      property: 'article:published_time',
+      content: new Date(post.date).toISOString(),
+    },
+    { name: 'twitter:card', content: 'summary_large_image' },
+  ];
+}
+```
+
+## Best Practices
+
+<Callout type='warning' title='Performance'>
+  Always optimize your images and implement lazy loading for better performance.
+</Callout>
+
+1. **Content Organization**: Keep your MDX files in a structured `content/` directory
+2. **Component Reusability**: Create reusable components for common patterns
+3. **Type Safety**: Leverage TypeScript for better development experience
+4. **Responsive Design**: Test your blog on different screen sizes
+5. **Accessibility**: Ensure proper semantic HTML and ARIA labels
+
+## Deployment
+
+<Files>
+  <Folder name='deployment-configs' defaultOpen>
+    <File name='netlify.toml' />
+    <File name='vercel.json' />
+    <File name='Dockerfile' />
+  </Folder>
+</Files>
+
+### Netlify Deployment
+
+```toml
+# netlify.toml
+[build]
+  command = "npm run build"
+  publish = "build/client"
+
+[build.environment]
+  NODE_VERSION = "18"
+```
+
+### Vercel Deployment
+
+```json
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "build/client",
+  "installCommand": "npm install"
+}
+```
+
+## Conclusion
+
+Building a blog with Fumadocs and React Router 7 provides an excellent developer experience with beautiful UI components out of the box. The combination of file-based routing, MDX support, and rich UI components makes it easy to create a professional, modern blog.
+
+<Callout type='info' title='Next Steps'>
+  Consider adding features like: - Comments system - Search functionality - RSS
+  feed - Newsletter signup - Analytics integration
+</Callout>
+
+Happy blogging! 🚀

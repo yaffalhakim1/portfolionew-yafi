@@ -29,11 +29,6 @@ export async function loader({}: Route.LoaderArgs) {
 export default function BlogIndex({ loaderData }: Route.ComponentProps) {
   const { posts } = loaderData;
 
-  //   // Sort posts by date, newest first
-  //   const sortedPosts = posts.sort(
-  //     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-  //   );
-
   return (
     <div className='min-h-screen bg-background'>
       <div className='container mx-auto px-4 py-8'>
