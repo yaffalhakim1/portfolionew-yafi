@@ -3,6 +3,7 @@ import FeaturedCards from '@/components/featured-cards';
 import { GitHubCalendarWrapper } from '@/components/github-calendar';
 import TypingAnimation from '@/components/rotate-text';
 import { Heading } from '@/components/anim/heading';
+import FeaturedProjects from '@/components/featured-projects';
 import type { Route } from './+types/_index';
 import { generateMeta } from '../metaConfig';
 
@@ -47,6 +48,16 @@ export default function Home() {
         <FeaturedCards />
         <GitHubCalendarWrapper username='yaffalhakim1' />
       </div>
+
+      <Animate>
+        <div className='flex flex-col space-y-4'>
+          <p className='text-sm text-white-600'>
+            Here are some of my recent projects. Click to explore the live
+            demos.
+          </p>
+          <FeaturedProjects />
+        </div>
+      </Animate>
     </div>
   );
 }

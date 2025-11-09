@@ -33,14 +33,6 @@ function AboutPage() {
           I&apos;m Yafi, a <span className='font-bold'>Fullstack Engineer</span>
         </p>
         <p className='text-justify md:w-9/12 text-sm leading-relaxed'>
-          Hi, I&apos;m Yaf—a Professional Frontend Engineer based in Jakarta,
-          Indonesia, currently leveling up my skills in backend engineering and
-          Infrastructure DevOps. With 2 year of experience crafting interactive
-          and accessible web applications using React and Next.js, and now
-          exploring the world behind the scenes—building REST APIs with Node.js,
-          deploying apps on VPS, and diving into data structures and algorithms
-          to write smarter, more efficient code.
-          <br />
           <br />
           Excited to bridge the gap between frontend and backend—and build
           full-stack experiences that are not only functional but also fast,
@@ -48,7 +40,6 @@ function AboutPage() {
           routes, you&apos;ll find me sharing the journey—whether it&apos;s a
           tutorial, a deployment log, or an “aha” moment—in my learning log
           (blog).
-          <br />
           <br />
         </p>
       </Animate>
