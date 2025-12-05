@@ -1,6 +1,6 @@
 import { Link } from 'react-router';
 import type { Route } from './+types/blog._index';
-import { source } from '@/lib/source';
+import { blogSource } from '@/lib/source';
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -14,7 +14,7 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export async function loader({}: Route.LoaderArgs) {
-  const posts = source.getPages();
+  const posts = blogSource.getPages();
 
   return {
     posts: posts.map((post) => ({

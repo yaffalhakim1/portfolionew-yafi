@@ -3,7 +3,7 @@ import { create, docs, meta, blog } from '@/.source';
 
 export const source = loader({
   source: await create.sourceAsync(docs, meta),
-  baseUrl: '/blog',
+  baseUrl: '/docs',
 });
 
 export const blogSource = loader({
