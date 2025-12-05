@@ -4,11 +4,11 @@ import type * as Config from '../source.config';
 
 export const create = fromConfig<typeof Config>();
 
-export const blog = create.doc("blog", "content/docs", import.meta.glob(["./**/*.{mdx,md}"], {
+export const blog = create.doc("blog", "content/blog", import.meta.glob(["./**/*.{mdx,md}"], {
   "query": {
     "collection": "blog"
   },
-  "base": "./../content/docs"
+  "base": "./../content/blog"
 }));
 
 export const docs = create.doc("docs", "content/docs", import.meta.glob(["./**/*.{mdx,md}"], {
