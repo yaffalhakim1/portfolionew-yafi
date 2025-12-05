@@ -37,9 +37,8 @@ function AboutPage() {
           Excited to bridge the gap between frontend and backend—and build
           full-stack experiences that are not only functional but also fast,
           scalable, and user-friendly. When not debugging code or sketching API
-          routes, you&apos;ll find me sharing the journey—whether it&apos;s a
-          tutorial, a deployment log, or an “aha” moment—in my learning log
-          (blog).
+          routes, you'll find me sharing the journey—whether it's a tutorial, a
+          deployment log, or an "aha" moment—in my learning log.
           <br />
         </p>
       </Animate>
