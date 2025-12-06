@@ -1,6 +1,4 @@
 @import 'tailwindcss';
-@import 'fumadocs-ui/css/neutral.css';
-@import 'fumadocs-ui/css/preset.css';
 
 @theme {
   --container-screen-xl: 75rem;
@@ -94,4 +92,16 @@
   .container {
     @reference w-full px-5 py-0 mx-auto max-w-8xl sm:px-7;
   }
+}
+
+.article-content h1 {
+  @apply text-4xl font-bold mt-6 mb-2;
+}
+
+.article-content h2 {
+  @apply text-2xl font-semibold mt-10 mb-4 leading-snug;
+}
+
+.article-content p {
+  @apply mt-6 text-xl/8 text-gray-700;
 }

@@ -12,8 +12,6 @@ import './app.css';
 import { Header } from '@/components/header';
 import { metainfo } from './metaConfig';
 
-import { ReactRouterProvider } from 'fumadocs-core/framework/react-router';
-
 import { ThemeProvider } from '@/components/theme-provider';
 
 export const meta: Route.MetaFunction = () => {
@@ -90,16 +88,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
         className='bg-[#f9f9f6] dark:bg-[#16181d] font-sans antialiased'
         suppressHydrationWarning
       >
-        <ReactRouterProvider>
-          <ThemeProvider
-            attribute='class'
-            defaultTheme='system'
-            enableSystem={true}
-            disableTransitionOnChange
-          >
-            {children}
-          </ThemeProvider>
-        </ReactRouterProvider>
+        <ThemeProvider
+          attribute='class'
+          defaultTheme='system'
+          enableSystem={true}
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
         <ScrollRestoration />
         <Scripts />
       </body>

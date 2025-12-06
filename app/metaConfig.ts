@@ -2,7 +2,7 @@
 export const metainfo = {
   name: 'Muhammad Yafi Alhakim',
   description: 'Software Engineer - Fullstack Engineer from Indonesia.',
-  url: 'https://yafialhakim.vercel.app',
+  url: 'https://yafialhakim.netlify.app',
   image: '/meta/meta.png',
   twitter: '@koalasigma',
 };
