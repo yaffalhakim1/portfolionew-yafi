@@ -11,9 +11,8 @@ export type NavItem = {
 const navItems: NavItem[] = [
   { name: 'Home', link: '/' },
   { name: 'About', link: '/about' },
-  { name: 'Work', link: '/experience' },
+  { name: 'Experience', link: '/experience' },
   { name: 'Projects', link: '/projects' },
-  { name: 'Blog', link: '/posts' },
 ];
 
 export function Header() {
