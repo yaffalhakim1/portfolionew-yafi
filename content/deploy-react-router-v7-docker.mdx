@@ -44,6 +44,21 @@ Here's how our deployment pipeline works:
 
 First, let's look at the relevant files in our project:
 
+<FileTree>
+  <Folder name='portfolio' defaultOpen>
+    <File name='Dockerfile' />
+    <File name='docker-compose.yml' />
+    <File name='Caddyfile' />
+    <File name='package.json' />
+    <File name='vite.config.docker.ts' />
+    <Folder name='.github'>
+      <Folder name='workflows'>
+        <File name='deploy.yaml' />
+      </Folder>
+    </Folder>
+  </Folder>
+</FileTree>
+
 - `Dockerfile`
 - `docker-compose.yml`
 - `Caddyfile`
@@ -319,4 +334,26 @@ touch docker-compose.yml Caddyfile
 
 ## Conclusion
 
-This setup provides a robust, automated deployment pipeline. By combining **Docker** for consistency, **GitHub Actions** for automation, and **Caddy** for security, we've built a production-grade infrastructure that rivals managed platforms, but with a fraction of the cost and significantly more control.
+This setup provides a robust, automated deployment pipeline. By combining **Docker** for consistency, **GitHub Actions** for automation, and **Caddy** for security, we've built a production-grade infrastructure that rivals managed platforms, but with a fraction of the cost and significantly more control. The best part? Once configured, deploying is as simple as clicking "Run workflow" in GitHub Actions!
+
+## Related Resources
+
+<Cards>
+  <Card
+    title='React Router Documentation'
+    href='https://reactrouter.com/en/main'
+    arrow
+  >
+    Official documentation for React Router v7
+  </Card>
+  <Card title='Docker Docs' href='https://docs.docker.com/' arrow>
+    Learn more about containerization
+  </Card>
+  <Card title='Caddy Server' href='https://caddyserver.com/' arrow>
+    Automatic HTTPS reverse proxy
+  </Card>
+</Cards>
+
+---
+
+Have questions or suggestions? Feel free to reach out! This setup has been battle-tested in production and handles thousands of requests daily with zero downtime.

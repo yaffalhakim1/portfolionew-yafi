@@ -14,6 +14,14 @@ export default [
     path: '/projects',
     file: 'routes/projects.tsx',
   },
+  {
+    path: '/blog',
+    file: 'routes/blog._index.tsx',
+  },
+  {
+    path: '/blog/:slug',
+    file: 'routes/blog.$slug.tsx',
+  },
   // {
   //   path: '/coding-problems',
   //   file: 'routes/coding-problems.tsx',
