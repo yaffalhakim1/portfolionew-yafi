@@ -1,5 +1,4 @@
 import React from 'react';
-import { IconNextjs, IconSupabase } from '@/components/icons';
 
 export interface ProjectData {
   title: string;
@@ -11,35 +10,31 @@ export interface ProjectData {
 
 export const projectsData: ProjectData[] = [
   {
-    title: 'Sumz',
-    desc: 'Sumz is a website to summarize article with AI',
+    title: 'Sumz - AI Summarizer',
+    desc: 'An intelligent article summarizer leveraging AI to condense lengthy web content into concise summaries. Built with Next.js and integrated with OpenAI API for real-time processing.',
     image: '/img/sumz.png',
     href: 'https://summarizer-drab.vercel.app/',
-    stack: ['NextJS'],
+    stack: ['NextJS', 'React', 'Tailwind'],
   },
-
   {
     title: 'Anonymous Message',
-    desc: 'Send anonymous message to you.',
+    desc: 'A secure messaging platform allowing users to send feedback and messages anonymously. Features real-time updates and a dashboard for managing incoming messages.',
     image: '/img/anonym.png',
     href: 'https://anonymous-website-message.vercel.app/',
-    stack: ['NextJS', 'Supabase'],
+    stack: ['NextJS', 'Supabase', 'Tailwind'],
   },
   {
-    title: 'Movies',
-    desc: 'Simple movies web using NextJS',
+    title: 'Movies Discovery',
+    desc: 'A responsive movie discovery web application featuring trending, top-rated, and upcoming films. Implements seamless data fetching and caching strategies for optimal performance.',
     image: '/img/movies.png',
     href: 'https://movies-13.vercel.app/',
-    stack: ['NextJS'],
+    stack: ['NextJS', 'React', 'Tailwind'],
   },
   {
     title: 'Pokeredux',
-    desc: 'Data fetching with redux toolkit.',
+    desc: 'A robust Pokemon explorer application demonstrating complex state management. Utilizes Redux Toolkit for efficient data handling and RTK Query for caching API responses.',
     image: '/img/pokredux.png',
     href: 'https://pokredux.vercel.app/',
+    stack: ['React', 'Redux', 'Tailwind'],
   },
 ];
-
-export const getStackIcons = (stack: string[] | undefined): string[] => {
-  return stack || [];
-};

@@ -107,7 +107,7 @@ export default function App() {
   return (
     <>
       <Header />
-      <main className='container mx-auto flex flex-1 flex-col pb-20 pt-40 px-4 sm:px-6 md:px-80'>
+      <main className='container mx-auto flex flex-1 flex-col pb-20 pt-40 px-4 sm:px-6 md:px-20 lg:px-40 xl:px-80'>
         <Outlet />
       </main>
     </>

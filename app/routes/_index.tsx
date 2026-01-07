@@ -28,20 +28,22 @@ export default function Home() {
             text='Fullstack Engineer'
           />
 
-          <p className='leading-relaxed text-sm'>
-            {' '}
-            Fullstack Engineer from Indonesia, dedicated to crafting beautiful
-            to <b>performance-optimized</b> web applications and websites.
-          </p>
-          <br />
-          <p className='leading-relaxed text-sm'>
-            {' '}
-            With a strong foundation in both front-end and back-end development,
-            specializing in creating seamless user experiences and robust server
-            solutions. My passion lies in transforming ideas into reality
-            through code, ensuring every project I undertake is not only
-            functional but also visually appealing.
-          </p>
+          <div className='mt-5 max-w-2xl'>
+            <p className='leading-relaxed text-sm text-gray-600 dark:text-gray-300'>
+              Software Engineer specializing in <b>React Ecosystem</b> and{' '}
+              <b>High-Performance Web Architecture</b>.
+            </p>
+            <br />
+            <p className='leading-relaxed text-sm text-gray-600 dark:text-gray-300'>
+              Currently engineering the frontend for a massive education
+              platform serving <b>1.2M+ daily active users</b>. I don&apos;t
+              just build features—I solve complex scaling challenges, optimize
+              Core Web Vitals, and refactor accrued technical debt into robust,
+              maintainable systems. My expertise bridges the gap between
+              pixel-perfect design and backend efficiency, ensuring that
+              applications are not only beautiful but brutally fast.
+            </p>
+          </div>
         </Animate>
       </div>
       <div className='flex flex-col gap-4 md:flex-row md:items-start md:gap-6'>

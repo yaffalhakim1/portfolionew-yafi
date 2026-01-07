@@ -1,78 +1,47 @@
-import React, { useEffect, useState } from 'react';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import React from 'react';
 import Projects from './projects-card';
-import { IconNextjs, IconSupabase } from './icons';
+import { IconNextjs, IconSupabase, IconReact, IconRedux } from './icons';
 import { projectsData, type ProjectData } from '../data/projects-data';
 
+const renderStackBadge = (project: ProjectData) => {
+  if (!project.stack || project.stack.length === 0) return null;
+
+  const getIcon = (tech: string) => {
+    switch (tech) {
+      case 'NextJS':
+        return <IconNextjs width='16px' height='16px' className='mr-1' />;
+      case 'Supabase':
+        return <IconSupabase width='16px' height='16px' className='mr-1' />;
+      case 'React':
+        return <IconReact width='16px' height='16px' className='mr-1' />;
+      case 'Redux':
+        return <IconRedux width='16px' height='16px' className='mr-1' />;
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <span className='flex flex-wrap gap-2 mt-2'>
+      {project.stack.map((tech, index) => (
+        <span
+          key={index}
+          className='text-xs font-medium inline-flex items-center px-2.5 py-1 rounded border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-700 dark:text-gray-300'
+        >
+          {getIcon(tech)}
+          {tech}
+        </span>
+      ))}
+    </span>
+  );
+};
+
 const FeaturedProjects: React.FC = () => {
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 640,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
-
-  const renderStackBadge = (project: ProjectData) => {
-    if (!project.stack || project.stack.length === 0) return null;
-
-    const getIcon = (tech: string) => {
-      switch (tech) {
-        case 'NextJS':
-          return <IconNextjs width='16px' height='16px' className='mr-1' />;
-        case 'Supabase':
-          return <IconSupabase width='16px' height='16px' className='mr-1' />;
-        default:
-          return null;
-      }
-    };
-
-    return (
-      <span className='text-xs font-medium inline-flex items-center px-2.5 py-1 rounded mr-2 border border-gray-500'>
-        {project.stack.map((tech, index) => (
-          <React.Fragment key={index}>{getIcon(tech)}</React.Fragment>
-        ))}
-      </span>
-    );
-  };
-
-  if (!isClient) {
-    // Fallback for SSR - show as grid
-    return (
-      <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
+  return (
+    <div className='w-full'>
+      <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
         {projectsData.map((project, index) => (
-          <div key={index} className='px-2'>
+          <div key={index} className='flex'>
             <Projects
               title={project.title}
               desc={project.desc}
@@ -83,24 +52,6 @@ const FeaturedProjects: React.FC = () => {
           </div>
         ))}
       </div>
-    );
-  }
-
-  return (
-    <div className='w-full' style={{ minHeight: 0, minWidth: 0 }}>
-      <Slider {...settings}>
-        {projectsData.map((project, index) => (
-          <div key={index} className='px-2'>
-            <Projects
-              title={project.title}
-              desc={project.desc}
-              image={project.image}
-              href={project.href}
-              stack={renderStackBadge(project)}
-            />
-          </div>
-        ))}
-      </Slider>
     </div>
   );
 };
