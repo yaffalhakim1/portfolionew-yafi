@@ -13,6 +13,7 @@ const navItems: NavItem[] = [
   { name: 'About', link: '/about' },
   { name: 'Experience', link: '/experience' },
   { name: 'Projects', link: '/projects' },
+  { name: 'Coding Problems', link: '/coding-problems' },
 ];
 
 export function Header() {

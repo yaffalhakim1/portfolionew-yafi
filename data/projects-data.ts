@@ -17,13 +17,7 @@ export const projectsData: ProjectData[] = [
     href: 'https://summarizer-drab.vercel.app/',
     stack: ['NextJS'],
   },
-  {
-    title: 'Chill Out',
-    desc: 'Chill Out is a web makes you study with relax.',
-    image: '/img/chill.png',
-    href: 'https://chill-out.vercel.app/',
-    stack: ['NextJS'],
-  },
+
   {
     title: 'Anonymous Message',
     desc: 'Send anonymous message to you.',
@@ -39,34 +33,10 @@ export const projectsData: ProjectData[] = [
     stack: ['NextJS'],
   },
   {
-    title: 'Simple E-commerce',
-    desc: 'Simple e-commerce using NextJS and RSC',
-    image: '/img/ecommerce.png',
-    href: 'https://simple-ecommerce-appdir.vercel.app/',
-  },
-  {
     title: 'Pokeredux',
     desc: 'Data fetching with redux toolkit.',
     image: '/img/pokredux.png',
     href: 'https://pokredux.vercel.app/',
-  },
-  {
-    title: 'Todo List',
-    desc: 'This is a todo list that I made using Supabase.',
-    href: 'https://todo-supabasev2.vercel.app/',
-    image: '/img/todos.png',
-  },
-  {
-    title: 'Blog Design',
-    desc: 'Practicing slicing a design using Tailwind CSS.',
-    href: 'https://slicing-next1.vercel.app/',
-    image: '/img/slicing1.png',
-  },
-  {
-    title: 'CodeDesign',
-    desc: 'Slicing from design to web from codedesign.dev.',
-    href: 'https://slicing-all.vercel.app/',
-    image: '/img/codesign.png',
   },
 ];
 

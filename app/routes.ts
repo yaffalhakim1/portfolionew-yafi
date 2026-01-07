@@ -14,4 +14,12 @@ export default [
     path: '/projects',
     file: 'routes/projects.tsx',
   },
+  {
+    path: '/coding-problems',
+    file: 'routes/coding-problems.tsx',
+  },
+  {
+    path: '/coding-problems/:slug',
+    file: 'routes/coding-problems.$slug.tsx',
+  },
 ] satisfies RouteConfig;
