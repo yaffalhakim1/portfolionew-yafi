@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { type NavItem } from '@/components/header';
 import { MobileNavigation } from '@/components/mobile-navigation';
-import { cn } from 'lib/utils';
+import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
 import { Link, useLocation } from 'react-router';
 

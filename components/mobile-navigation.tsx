@@ -7,7 +7,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { cn } from 'lib/utils';
+import { cn } from '@/lib/utils';
 import { Menu } from 'lucide-react';
 import { Link } from 'react-router';
 import { motion, AnimatePresence } from 'framer-motion';

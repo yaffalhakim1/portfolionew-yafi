@@ -1,11 +1,5 @@
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import {
-  Info,
-  AlertTriangle,
-  XCircle,
-  CheckCircle,
-  Lightbulb,
-} from 'lucide-react';
+import { Info, AlertTriangle, XCircle, Lightbulb } from 'lucide-react';
 
 interface CalloutProps {
   type?: 'default' | 'warning' | 'danger' | 'info' | 'tip';
